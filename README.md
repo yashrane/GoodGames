@@ -8,7 +8,7 @@ Uses Python's Pandas library to predict the rating of a Board game using a datas
 * Uses a Random Forest to predict the rating of boardgames 
 * In the future, AdaBoost or a boosted gradient descent algorithm may be used for predictions instead
 
-![Year Plot](https://raw.githubusercontent.com/yashrane/GoodGames/master/plots/YearPlot.png "YearPlot")
+![Importance Plot](https://raw.githubusercontent.com/yashrane/GoodGames/master/plots/ImportancePlot.png "ImportancePlot")
 
 We can easily see that the year a game was published is vastly more important than any of the other characteristics.In order to futher investigate the connection between board game characteristics and rating, I created plots using the two most important features, year published and max players..
 
