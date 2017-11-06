@@ -103,7 +103,7 @@ colors = reversed(sns.color_palette("Greens_d", n_colors=len(importance_data['Fe
 sns.set_context('talk')
 importance_plot = sns.barplot(y='Feature', x= 'Importance', data=importance_data, palette=colors)
 importance_plot.set_title('Board Game Characteristics Ranked By Importance')
-importance_plot.get_figure().savefig('plots/ImportancePlot.png')
+importance_plot.get_figure().savefig('plots/ImportancePlot.png',bbox_inches='tight')
 
 
 
