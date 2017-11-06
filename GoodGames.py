@@ -13,7 +13,9 @@ Created on Sun Oct 15 20:10:37 2017
 import sqlite3
 import pandas as pd
 import numpy as np
+import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
+
 np.random.seed(0)
 
 
@@ -87,9 +89,21 @@ test_error = error(test_preds, test['stats.average'])
 #dict(zip(unique, counts))
 
 #clf.predict_proba(test[features])[0:10]
-#list(zip(train[features], clf.feature_importances_))
+#list(zip(train[features], clf.feature_importances_ ))
 
-
+importance_data = pd.DataFrame(
+        {'Importance': clf.feature_importances_, 
+         'Feature': features
+        })
+importance_data['Feature'] = importance_data['Feature'].apply(lambda x: x[x.index('.')+1 :])
+importance_data['Importance'] = importance_data['Importance'].apply(lambda x: x*100)
+importance_data.sort_values(by='Importance', inplace=True)
+colors = reversed(sns.color_palette("Greens_d", n_colors=len(importance_data['Feature'])))
+#sns.set_style("whitegrid")
+sns.set_context('talk')
+importance_plot = sns.barplot(y='Feature', x= 'Importance', data=importance_data, palette=colors)
+importance_plot.set_title('Board Game Characteristics Ranked By Importance')
+importance_plot.get_figure().savefig('plots/ImportancePlot.png')
 
 
 

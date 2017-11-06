@@ -37,7 +37,7 @@ maxPlayerData = maxPlayerData_temp.groupby('details.maxplayers', as_index=False)
 #draw a plot
 #g = sns.jointplot(x='details.yearpublished', y='stats.average',dropna=True, data = yearData, alpha=0.01)
 yearPlot = sns.jointplot(x='details.yearpublished', y='stats.average',dropna=True, data = yearData)
-yearPlot.savefig('lib/YearPlot.png')
+yearPlot.savefig('plots/YearPlot.png')
 
 playerPlot = sns.jointplot(x='details.maxplayers', y='stats.average',dropna=True, data = maxPlayerData)    
-playerPlot.savefig('lib/PlayerPlot.png')
+playerPlot.savefig('plots/PlayerPlot.png')
