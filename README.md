@@ -31,7 +31,7 @@ Finally, I wanted to see if there were any ways to improve my Gradient Descent a
 There is a slight negative correlation between the residual and the predicted value, which indicates that there is room for improvement in the algorithm. By varying the hyper-parameters, I should be able to improve the predictions.
 
 
-###Characteristics
+### Characteristics
 
 #### Year Published vs Average Rating
 
@@ -44,7 +44,7 @@ There seems to be a general trend for the ratings of games to increase starting 
 
 
 
-###Conclusion
+### Conclusion
 
 There seems to be very little correlation between the quantifiable characteristics of a board game and its overall rating. The only exception to this rule is the year the game was published, as people prefer more recent games over older ones.
 Because of this, any prediction algorithms will have limited success. All 3 of the prediction algorithms I tried had similar results, but none of them were very accurate. 
