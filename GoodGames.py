@@ -14,9 +14,12 @@ import sqlite3
 import pandas as pd
 import numpy as np
 import seaborn as sns
-from sklearn.ensemble import RandomForestClassifier
 
-np.random.seed(0)
+
+
+
+
+
 
 
 
@@ -39,8 +42,8 @@ def loadTestData(df):
         
     test_df = test_df.dropna(axis=0, how='any')
     
-    round_col = np.vectorize(lambda x: int(round(x)))
-    test_df = test_df.apply(round_col, axis='columns')
+    #round_col = np.vectorize(lambda x: int(round(x)))
+    #test_df = test_df.apply(round_col, axis='columns')
     has_score = test_df['stats.average'] != 0
     test_df = test_df[has_score]
     return test_df
@@ -50,60 +53,17 @@ test_df = loadTestData(df)
 
 
     
-test_df['is_train'] = np.random.uniform(0, 1, len(test_df)) <= .6
-
-# Create two new dataframes, one with the training rows, one with the test rows
-train, temp = test_df[test_df['is_train']==True], test_df[test_df['is_train']==False]
-
-temp['is_validation'] = np.random.uniform(0, 1, len(temp)) <= .5
-validation, test = temp[temp['is_validation']==True], temp[temp['is_validation']==False]
-
-
-# Show the number of observations for the test and training dataframes
-print('Number of observations in the training data:', len(train))
-print('Number of observations in the validation data:',len(validation))
-print('Number of observations in the test data:',len(test))
-
-features = test_df.columns[:7]
-target = np.asarray(train['stats.average'])
-
-# Create a random forest Classifier. By convention, clf means 'Classifier'
-clf = RandomForestClassifier(n_jobs=2, random_state=0)
-
-# Train the Classifier to take the training features and learn how they relate
-# to the training target
-clf.fit(train[features], target)
-
-valid_preds = clf.predict(validation[features])
-test_preds = clf.predict(test[features])
 
 
 
-error = lambda x,y : (x-y).abs()
-valid_error = error(valid_preds, validation['stats.average'])
-test_error = error(test_preds, test['stats.average'])
 
 
 
-#unique, counts = numpy.unique(preds, return_counts=True)
-#dict(zip(unique, counts))
 
-#clf.predict_proba(test[features])[0:10]
-#list(zip(train[features], clf.feature_importances_ ))
 
-importance_data = pd.DataFrame(
-        {'Importance': clf.feature_importances_, 
-         'Feature': features
-        })
-importance_data['Feature'] = importance_data['Feature'].apply(lambda x: x[x.index('.')+1 :])
-importance_data['Importance'] = importance_data['Importance'].apply(lambda x: x*100)
-importance_data.sort_values(by='Importance', inplace=True)
-colors = reversed(sns.color_palette("Greens_d", n_colors=len(importance_data['Feature'])))
-#sns.set_style("whitegrid")
-sns.set_context('talk')
-importance_plot = sns.barplot(y='Feature', x= 'Importance', data=importance_data, palette=colors)
-importance_plot.set_title('Board Game Characteristics Ranked By Importance')
-importance_plot.get_figure().savefig('plots/ImportancePlot.png',bbox_inches='tight')
+
+
+
 
 
 

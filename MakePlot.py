@@ -9,6 +9,15 @@ import numpy as np
 import seaborn as sns
 
 
+
+
+
+
+
+
+
+
+
 #creates a dataframe that only tracks the year something was published and its rating
 tempYearData = pd.DataFrame(test_df['details.yearpublished'])
 tempYearData = tempYearData.join(test_df['stats.average'])
